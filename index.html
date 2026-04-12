@@ -3,23 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIGUN | Thermal Healthcare</title>
-    <!-- Fonts -->
+    <title>MIGUN | Premium Thermal Healthcare</title>
+    <!-- Fonts: Inter for a clean, medical-tech aesthetic -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
     <!-- Header -->
     <header class="header">
-        <div class="logo">MIGUN.</div>
+        <div class="logo">
+            <!-- Using a text placeholder for logo -->
+            <span class="logo-red">MIGUN</span>
+        </div>
         <nav class="nav">
-            <a href="#about">About</a>
-            <a href="#products">Products</a>
-            <a href="#solutions">Solutions</a>
-            <a href="#contact">Contact</a>
+            <a href="#series">Re:series</a>
+            <a href="#technology">Technology</a>
+            <a href="#support">Customer Support</a>
         </nav>
         <button class="menu-btn" aria-label="Menu">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
@@ -27,238 +29,216 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-content fade-in">
-            <h1 class="hero-title">The Moment<br>Thermal Healthcare<br><em>Changes Your Life</em>.</h1>
-            <p class="hero-subtitle">Innovating rest. Redefining wellness for the modern world.</p>
-            <div class="hero-actions">
-                <a href="#contact" class="btn btn-primary">Become a Partner</a>
-                <a href="#products" class="btn btn-outline">View Products</a>
-            </div>
+    <section class="hero slide-up">
+        <div class="hero-bg">
+            <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="MIGUN Medical Device Background">
         </div>
-        
-        <!-- Marquee -->
-        <div class="marquee-container">
-            <div class="marquee-content">
-                <span>FDA Approved</span>
-                <span class="dot">·</span>
-                <span>CE Certified</span>
-                <span class="dot">·</span>
-                <span>ISO 9001</span>
-                <span class="dot">·</span>
-                <span>ISO 13485</span>
-                <span class="dot">·</span>
-                <span>Global Partners</span>
-                <span class="dot">·</span>
-                <span>FDA Approved</span>
-                <span class="dot">·</span>
-                <span>CE Certified</span>
-                <span class="dot">·</span>
-                <span>ISO 9001</span>
-                <span class="dot">·</span>
-                <span>ISO 13485</span>
-                <span class="dot">·</span>
-                <span>Global Partners</span>
-            </div>
+        <div class="hero-content">
+            <h2 class="hero-subtitle">For a Healthy, Beautiful Life.</h2>
+            <h1 class="hero-title">Experience MIGUN Re:series</h1>
+            <p class="hero-desc">Advanced Thermal Medical Technology</p>
         </div>
     </section>
 
-    <!-- About Stats Section -->
-    <section id="about" class="about section">
+    <!-- Medical Standard Banner -->
+    <section class="medical-banner slide-up">
         <div class="container">
-            <div class="about-grid">
-                <div class="about-text fade-in">
-                    <h2 class="section-title">A Heritage of Healing</h2>
-                    <p>Since 1988, MIGUN has pioneered the fusion of traditional warmth and modern medical technology. We craft premium devices that harmonize body and mind, establishing a legacy of trust that spans the globe.</p>
-                </div>
-                <div class="about-stats slide-up">
-                    <div class="stat-item">
-                        <span class="stat-number">38</span>
-                        <span class="stat-label">Years of History</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">1st</span>
-                        <span class="stat-label">Personal Thermal Device</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">50+</span>
-                        <span class="stat-label">Countries Present</span>
-                    </div>
+            <div class="banner-content">
+                <p><strong>MIGUN Medical's new standard of premium massage</strong></p>
+                <div class="banner-icon">
+                    <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Bed Icon">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Selected Products (Grid) -->
-    <section id="products" class="products section bg-light">
+    <!-- Section: Heritage -->
+    <section class="section text-center heritage fade-in">
         <div class="container">
-            <h2 class="section-title fade-in">Selected Products</h2>
-            <div class="product-grid">
-                <!-- Product 1 -->
-                <div class="product-card slide-up">
-                    <div class="product-img">
-                        <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Premium Thermal Bed">
-                    </div>
-                    <div class="product-info">
-                        <span class="category">Flagship Model</span>
-                        <h3 class="product-title">Premium Thermal Bed</h3>
-                        <p class="product-detail">Our masterpiece of ergonomic engineering and deep far-infrared therapy.</p>
-                    </div>
-                </div>
-                <!-- Product 2 -->
-                <div class="product-card slide-up" style="transition-delay: 0.1s;">
-                    <div class="product-img">
-                        <img src="https://images.unsplash.com/photo-1505693314120-0d443867891c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="MIGUN Brain Health Pillow">
-                    </div>
-                    <div class="product-info">
-                        <span class="category">Sleep Wellness</span>
-                        <h3 class="product-title">Brain Health Pillow</h3>
-                        <p class="product-detail">Precision cranial support meeting gentle thermal stimulation.</p>
-                    </div>
-                </div>
-                <!-- Product 3 -->
-                <div class="product-card slide-up" style="transition-delay: 0.2s;">
-                    <div class="product-img">
-                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Portable Massager">
-                    </div>
-                    <div class="product-info">
-                        <span class="category">Everyday Care</span>
-                        <h3 class="product-title">Portable Core Massager</h3>
-                        <p class="product-detail">Professional-grade thermal health brought to your daily routine.</p>
-                    </div>
-                </div>
+            <p class="section-tag text-red">The heritage of authentic thermal therapy</p>
+            <h2 class="section-heading">Re:bone</h2>
+            <div class="image-showcase large-image">
+                <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Rebone Authentic Therapy">
             </div>
         </div>
     </section>
 
-    <!-- Our Solutions (List) -->
-    <section id="solutions" class="solutions section">
+    <!-- Section: Daily Habit -->
+    <section class="section text-center daily-habit fade-in">
         <div class="container">
-            <h2 class="section-title fade-in">Our Solutions</h2>
-            <div class="solutions-list">
-                
-                <div class="solution-item slide-up">
-                    <div class="solution-meta">
-                        <span class="solution-num">01</span>
-                        <h3 class="solution-title">Home Healthcare</h3>
-                        <p class="solution-desc">Transforming the domestic environment into a sanctuary of recovery. We seamlessly integrate high-end medical devices into modern interior aesthetics.</p>
-                    </div>
-                    <div class="solution-img">
-                        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Home Healthcare">
-                    </div>
+            <p class="section-tag text-gray">Your daily habit for an optimal thermal massage</p>
+            <h2 class="section-heading">Re:bone</h2>
+            <div class="dual-image-grid">
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1629855589094-1a3b1ee655b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Rebone Usage 1">
                 </div>
-
-                <div class="solution-item slide-up reverse">
-                    <div class="solution-meta">
-                        <span class="solution-num">02</span>
-                        <h3 class="solution-title">Professional Clinic Equipment</h3>
-                        <p class="solution-desc">Providing certified, durable, and advanced thermal devices for hospitals, clinics, and rehabilitation centers prioritizing patient outcomes.</p>
-                    </div>
-                    <div class="solution-img">
-                        <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Professional Clinic">
-                    </div>
+                <div class="img-box img-offset">
+                    <img src="https://images.unsplash.com/photo-1505693314120-0d443867891c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Rebone Usage 2">
                 </div>
-
-                <div class="solution-item slide-up">
-                    <div class="solution-meta">
-                        <span class="solution-num">03</span>
-                        <h3 class="solution-title">Global B2B Partnerships</h3>
-                        <p class="solution-desc">Building sustainable business ecosystems. We supply competitive wellness hardware to global distributors and wellness franchisees.</p>
-                    </div>
-                    <div class="solution-img">
-                        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Global Partnerships">
-                    </div>
-                </div>
-
             </div>
         </div>
     </section>
 
-    <!-- Partnership Process -->
-    <section class="process section bg-light">
+    <!-- Section: Features Grid -->
+    <section class="section features-bg text-center fade-in">
         <div class="container">
-            <h2 class="section-title text-center fade-in">Partnership Process</h2>
-            <div class="process-grid">
-                <div class="process-step fade-in" style="transition-delay: 0s;">
-                    <div class="step-num">Step 01</div>
-                    <h3 class="step-title">Inquiry</h3>
-                    <p class="step-desc">Submit your basic requirements and business profile.</p>
+            <p class="section-tag text-red">You need only</p>
+            <h2 class="section-heading">Re:bone</h2>
+            
+            <div class="three-col-grid">
+                <div class="feature-card">
+                    <div class="feature-img">
+                        <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Jade Rollers">
+                    </div>
+                    <h3 class="feature-title">Easy control of Jade rollers</h3>
+                    <p class="feature-desc">Targeted precision for cervical alignment and relief.</p>
                 </div>
-                <div class="process-step fade-in" style="transition-delay: 0.1s;">
-                    <div class="step-num">Step 02</div>
-                    <h3 class="step-title">Consultation</h3>
-                    <p class="step-desc">In-depth discussion on tailored solutions and pricing.</p>
+                <div class="feature-card">
+                    <div class="feature-img">
+                        <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Thermal Massage">
+                    </div>
+                    <h3 class="feature-title">Warm Jade Thermal Massage</h3>
+                    <p class="feature-desc">Deep far-infrared penetration for muscle relaxation.</p>
                 </div>
-                <div class="process-step fade-in" style="transition-delay: 0.2s;">
-                    <div class="step-num">Step 03</div>
-                    <h3 class="step-title">Contracting</h3>
-                    <p class="step-desc">Secure agreements focusing on mutual long-term growth.</p>
-                </div>
-                <div class="process-step fade-in" style="transition-delay: 0.3s;">
-                    <div class="step-num">Step 04</div>
-                    <h3 class="step-title">Global Shipping</h3>
-                    <p class="step-desc">Safe, compliant, and prompt international delivery.</p>
+                <div class="feature-card">
+                    <div class="feature-img">
+                        <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Custom Therapy">
+                    </div>
+                    <h3 class="feature-title">Customized therapy program</h3>
+                    <p class="feature-desc">Smart algorithms tailored to your body type.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="testimonials section">
+    <!-- Section: Technology & Pain Relief -->
+    <section id="technology" class="section tech-section fade-in">
         <div class="container">
-            <h2 class="section-title fade-in">What Our Partners Say</h2>
-            <div class="test-grid">
-                <div class="test-card slide-up">
-                    <p class="test-quote">"Integrating MIGUN's thermal beds into our wellness centers elevated our client retention by 40%. The build quality is unmatched."</p>
-                    <div class="test-author">
-                        <strong>Sarah Jenkins</strong>
-                        <span>Director of Wellness, Equinox EU</span>
+            <div class="tech-header text-center">
+                <h2>Through Jade Thermal Technology,<br>correct posture, and stimulate blood to<br><span class="text-red">relieve muscular pain</span></h2>
+            </div>
+            
+            <div class="tech-rows">
+                <!-- Row 1 -->
+                <div class="tech-row slide-up">
+                    <div class="tech-img">
+                        <!-- Tech feeling image -->
+                        <img src="https://images.unsplash.com/photo-1530497610245-94d3c16cda28?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Whole Body Therapy">
+                    </div>
+                    <div class="tech-text">
+                        <h3 class="tech-title">Intensive whole body therapy</h3>
+                        <p class="tech-desc">Comprehensive thermal stimulation across major nerve lines, utilizing patented jade rolling mechanisms to promote total systemic circulation.</p>
                     </div>
                 </div>
-                <div class="test-card slide-up" style="transition-delay: 0.1s;">
-                    <p class="test-quote">"As a clinic owner, I require reliability and genuine therapeutic value. MIGUN delivers both with remarkable elegance."</p>
-                    <div class="test-author">
-                        <strong>Dr. Thomas Weber</strong>
-                        <span>Rehab Specialist, Munich</span>
+
+                <!-- Row 2 -->
+                <div class="tech-row reverse slide-up">
+                    <div class="tech-img">
+                        <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Upper Body Therapy">
+                    </div>
+                    <div class="tech-text">
+                        <h3 class="tech-title">Intensive upper body care</h3>
+                        <p class="tech-desc">Focused decompression and heat application for the cervical and thoracic regions, ideal for alleviating modern posture-related stresses.</p>
+                    </div>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="tech-row slide-up">
+                    <div class="tech-img">
+                        <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Lower Body Therapy">
+                    </div>
+                    <div class="tech-text">
+                        <h3 class="tech-title">Intensive lower body care</h3>
+                        <p class="tech-desc">Targeted lumbar and circulatory care to revitalize the legs and lower back, enhancing mobility and reducing fatigue.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Bottom CTA -->
-    <section id="contact" class="cta section bg-navy text-white">
-        <div class="container cta-container fade-in">
-            <h2 class="cta-title">Ready to change healthcare<br>in your region?</h2>
-            <p class="cta-desc">Join the legacy of thermal innovation. Let's build the future of wellness together.</p>
-            <div class="cta-actions">
-                <a href="mailto:hello@migun.com" class="btn btn-outline-white">Request a Free Consultation</a>
+    <!-- Section: Custom Fit Video/Overlay -->
+    <section class="section custom-fit-overlay slide-up">
+        <div class="overlay-bg">
+            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Woman relaxing on device">
+        </div>
+        <div class="overlay-content text-center text-white">
+            <h2 class="overlay-title">Perfectly fits to my body using custom function & rigid frame structure</h2>
+            
+            <div class="stats-layer">
+                <div class="stat-item">
+                    <div class="circle-icon">1</div>
+                    <p>Custom designed for<br>human ergonomics</p>
+                </div>
+                <div class="stat-item">
+                    <div class="circle-icon">2</div>
+                    <p>Optimized pressure<br>distribution</p>
+                </div>
+                <div class="stat-item">
+                    <div class="circle-icon">3</div>
+                    <p>Flexible frame structure<br>for all sizes</p>
+                </div>
             </div>
-            <div class="cta-contact">
-                <p>B2B Direct: +82-2-000-0000<br>hello@migun.com</p>
+        </div>
+    </section>
+
+    <!-- Section: Certifications -->
+    <section class="section cert-section text-center fade-in">
+        <div class="container">
+            <h2 class="cert-title">we are making reliable products through continuous<br><span class="text-red">research and technology development</span></h2>
+            
+            <div class="cert-grid">
+                <div class="cert-logo">ISO 9001</div>
+                <div class="cert-logo">FDA Registered</div>
+                <div class="cert-logo">CE</div>
+                <div class="cert-logo">GMP</div>
+                <div class="cert-logo">ISO 13485</div>
+                <div class="cert-logo">SGS</div>
+                <div class="cert-logo">FCC</div>
+                <div class="cert-logo">RoHS</div>
+                <div class="cert-logo">Global Patent</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Support & Bottom Grid -->
+    <section id="support" class="section support-section bg-light-gray fade-in">
+        <div class="container text-center">
+            <p class="section-tag">Direct query on Migun products</p>
+            <h2 class="section-heading mb-4">CONTACT US</h2>
+            
+            <div class="bottom-product-grid mt-5">
+                <div class="bp-card">
+                    <img src="https://images.unsplash.com/photo-1505693314120-0d443867891c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Re:series">
+                    <div class="bp-label">Re:series</div>
+                </div>
+                <div class="bp-card">
+                    <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Re:bone">
+                    <div class="bp-label">Re:bone</div>
+                </div>
+                <div class="bp-card">
+                    <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="V series">
+                    <div class="bp-label">V series</div>
+                </div>
+                <div class="bp-card">
+                    <img src="https://images.unsplash.com/photo-1629855589094-1a3b1ee655b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Professional">
+                    <div class="bp-label">Professional</div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container footer-container">
-            <div class="footer-brand">
-                <div class="logo">MIGUN.</div>
-                <p class="footer-copy">&copy; 2026 MIGUN Corp. All Rights Reserved.</p>
-            </div>
-            <div class="footer-links">
-                <div class="link-col">
-                    <h4>Company</h4>
-                    <a href="#about">Our Story</a>
-                    <a href="#">Careers</a>
-                    <a href="#">Press</a>
+        <div class="container">
+            <div class="footer-layout">
+                <div class="footer-brand">
+                    <div class="logo"><span class="logo-red">MIGUN</span></div>
                 </div>
-                <div class="link-col">
-                    <h4>Legal</h4>
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
+                <div class="footer-info">
+                    <p><strong>MIGUN LIFE CO., LTD.</strong></p>
+                    <p>Address: 3F, Migun Building, Healthcare District, Seoul, Korea</p>
+                    <p>Customer Center: 1588-0000 | Email: global@migun.com</p>
+                    <p class="copyright">&copy; MIGUN LIFE All Rights Reserved.</p>
                 </div>
             </div>
         </div>

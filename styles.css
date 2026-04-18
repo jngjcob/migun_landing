@@ -134,7 +134,18 @@ h1, h2, h3, h4 {
 }
 
 /* Immersive Page (Brain Pillow) */
-.immersive-page { height: 100vh; width: 100vw; overflow: hidden; position: relative; background: #000; }
+.immersive-page { 
+    width: 100vw; 
+    overflow-x: hidden; 
+    position: relative; 
+    background: #000; 
+}
+.hero-spline-section {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    overflow: hidden;
+}
 .immersive-spline {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
 }
@@ -158,6 +169,62 @@ h1, h2, h3, h4 {
     font-size: 1.2rem;
     font-weight: 300;
     opacity: 0.8;
+}
+
+/* Apple-style Product Showcase Section */
+.product-showcase {
+    background-color: #000;
+    color: #fff;
+    padding: 150px 5%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.showcase-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: 1rem;
+    background: linear-gradient(180deg, #fff 0%, #888 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.showcase-desc {
+    font-size: 1.2rem;
+    color: #999;
+    max-width: 600px;
+    margin-bottom: 5rem;
+}
+
+/* 3D Tilt Container */
+.tilt-container {
+    perspective: 1000px;
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    justify-content: center;
+}
+.tilt-box {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 20px;
+    transition: transform 0.1s ease-out;
+    transform-style: preserve-3d;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+    background: #111;
+    overflow: hidden;
+}
+.tilt-box img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 20px;
+    transform: translateZ(30px); /* Makes the image pop out slightly from the container */
+    transition: transform 0.1s ease-out;
 }
 
 .menu-btn { display: none; background: none; border: none; cursor: pointer; }

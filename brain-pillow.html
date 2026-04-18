@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain Health Pillow | MIGUN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Transparent header specific to the immersive page */
+        .header.immersive-header {
+            background-color: transparent !important;
+            border-bottom: none !important;
+            backdrop-filter: none !important;
+        }
+        .header.immersive-header .logo-red, 
+        .header.immersive-header .nav a {
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        .header.immersive-header .dropdown-content {
+            background-color: rgba(0, 0, 0, 0.8);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        .header.immersive-header .dropdown-content a {
+            color: #fff;
+        }
+        .header.immersive-header .dropdown-content a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        body { margin: 0; padding: 0; }
+    </style>
+</head>
+<body class="immersive-page">
+
+    <!-- Transparent Header -->
+    <header class="header immersive-header">
+        <div class="logo">
+            <a href="index.html" style="text-decoration: none;"><span class="logo-red">MIGUN</span></a>
+        </div>
+        <nav class="nav">
+            <div class="dropdown">
+                <a href="#">Products <svg class="dropdown-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></a>
+                <div class="dropdown-content">
+                    <a href="brain-pillow.html">Brain Health Pillow</a>
+                    <a href="index.html#series">Re:series</a>
+                </div>
+            </div>
+            <a href="index.html#technology">Technology</a>
+            <a href="index.html#support">Customer Support</a>
+        </nav>
+        <button class="menu-btn" aria-label="Menu" style="color: white;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </button>
+    </header>
+
+    <!-- Spline 3D Fullscreen Background -->
+    <div class="immersive-spline fade-in">
+        <iframe src='https://my.spline.design/aibrain-3MtUNqHkoKSElDPpvilTHpsj/' frameborder='0' width='100%' height='100%'></iframe>
+    </div>
+
+    <!-- Majesty Overlay Content -->
+    <div class="immersive-overlay fade-in" style="transition-delay: 0.3s;">
+        <h1>Brain Health Pillow</h1>
+        <p>혈행 개선 및 수면 유도를 위한 PEMF 발생 모듈이 내장된 기능성 베개</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

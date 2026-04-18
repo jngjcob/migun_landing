@@ -173,6 +173,20 @@ h1, h2, h3, h4 {
 .feature-title { font-size: 1.25rem; margin-bottom: 0.5rem; }
 .feature-desc { font-size: 0.95rem; color: var(--text-gray); }
 
+/* Spline AI Core */
+.bg-navy { background-color: var(--migun-blue); }
+.spline-section { border-top: 1px solid rgba(255,255,255,0.1); }
+.spline-container {
+    width: 100%; height: 500px;
+    border-radius: 12px; overflow: hidden;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    background: #000;
+}
+.spline-container iframe {
+    width: 100%; height: 100%; border: none;
+}
+
 /* Technology & Pain Relief */
 .tech-header h2 { font-size: 2rem; margin-bottom: 4rem; line-height: 1.4; }
 

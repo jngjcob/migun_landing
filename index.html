@@ -4,232 +4,624 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MIGUN | Premium Thermal Healthcare</title>
-    <!-- Fonts: Inter for a clean, medical-tech aesthetic -->
+    <meta name="description" content="The pioneer of personal thermal healthcare since 1988. Trusted across 50+ countries worldwide.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- GSAP + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* === RESET & BASE === */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: auto; } /* GSAP handles scroll */
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* === STICKY HEADER === */
+        .header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.1rem 5%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .logo {
+            position: absolute; left: 50%; transform: translateX(-50%);
+            font-size: 1.3rem; font-weight: 800; letter-spacing: 3px;
+            color: #fff; text-decoration: none;
+        }
+        .nav { margin-left: auto; display: flex; align-items: center; gap: 0; }
+        .nav a {
+            margin-left: 2rem; font-size: 0.82rem; font-weight: 500;
+            color: rgba(255,255,255,0.7); text-decoration: none;
+            transition: color 0.3s;
+        }
+        .nav a:hover { color: #fff; }
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-icon { vertical-align: middle; margin-left: 2px; }
+        .dropdown-content {
+            display: none; position: absolute; top: calc(100% + 10px);
+            left: 0; background: rgba(10,10,10,0.95);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px; padding: 0.5rem 0; min-width: 200px;
+            backdrop-filter: blur(20px);
+        }
+        .dropdown:hover .dropdown-content { display: block; animation: dropFade 0.2s ease; }
+        @keyframes dropFade { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
+        .dropdown-content a {
+            display: block; padding: 0.75rem 1.25rem; font-size: 0.85rem;
+            color: rgba(255,255,255,0.7); text-decoration: none; margin: 0;
+            transition: color 0.2s, background 0.2s;
+        }
+        .dropdown-content a:hover { color: #fff; background: rgba(255,255,255,0.05); }
+        .menu-btn { display: none; background: none; border: none; color: #fff; cursor: pointer; }
+
+        /* === HERO (Full Screen, Pinned) === */
+        .hero {
+            height: 100vh; width: 100%; position: relative;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            text-align: center; overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute; inset: 0; z-index: 0;
+        }
+        .hero-bg img {
+            width: 100%; height: 100%; object-fit: cover;
+            filter: brightness(0.35);
+            transform: scale(1.08); /* GSAP will animate this */
+        }
+        .hero-bg::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(to bottom, transparent 50%, #000 100%);
+        }
+        .hero-content { position: relative; z-index: 1; padding: 0 5%; }
+        .hero-eyebrow {
+            font-size: 0.85rem; font-weight: 700; letter-spacing: 4px;
+            text-transform: uppercase; color: #ff3b3b;
+            opacity: 0; /* GSAP animate in */
+            margin-bottom: 1.5rem;
+        }
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 800; letter-spacing: -3px; line-height: 1.0;
+            color: #fff; opacity: 0;
+            margin-bottom: 0;
+        }
+
+        /* === SCROLL SECTIONS (Apple-style) === */
+        .panel {
+            min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            padding: 10vh 8%;
+            position: relative;
+            overflow: hidden;
+        }
+        .panel-inner { max-width: 1100px; width: 100%; }
+
+        /* === STATEMENT PANELS (Full-width cinematic text) === */
+        .statement-panel {
+            min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            background: #000;
+            text-align: center; padding: 10vh 8%;
+        }
+        .statement-text {
+            font-size: clamp(2rem, 5.5vw, 5rem);
+            font-weight: 800; letter-spacing: -2px; line-height: 1.1;
+            max-width: 900px;
+        }
+        .statement-text .highlight { color: #ff3b3b; }
+
+        /* === CINEMATIC IMAGE PANELS === */
+        .image-statement {
+            position: relative; width: 100%; overflow: hidden;
+            height: 90vh;
+            display: flex; align-items: flex-end;
+        }
+        .image-statement img {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%; object-fit: cover;
+            filter: brightness(0.5);
+        }
+        .image-statement-text {
+            position: relative; z-index: 1;
+            padding: 5% 8%;
+            max-width: 700px;
+        }
+        .image-statement-label {
+            font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase;
+            color: rgba(255,255,255,0.6); margin-bottom: 1rem; font-weight: 600;
+        }
+        .image-statement-title {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 800; letter-spacing: -1.5px; line-height: 1.1;
+            color: #fff; margin-bottom: 1rem;
+        }
+        .image-statement-sub {
+            font-size: 1.1rem; color: rgba(255,255,255,0.75); font-weight: 400;
+        }
+
+        /* === STAT ROW === */
+        .stat-row {
+            display: flex; gap: 4rem; flex-wrap: wrap;
+            justify-content: center; padding: 12vh 8%;
+            background: #000; text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        .stat-block { flex: 1; min-width: 180px; }
+        .stat-number {
+            font-size: clamp(3.5rem, 7vw, 6rem);
+            font-weight: 800; letter-spacing: -3px; line-height: 1;
+            color: #fff;
+        }
+        .stat-unit { color: #ff3b3b; }
+        .stat-label {
+            font-size: 1rem; color: rgba(255,255,255,0.7);
+            margin-top: 0.75rem; font-weight: 500;
+        }
+
+        /* === AWARDS SECTION === */
+        .awards-section {
+            padding: 12vh 8%;
+            background: #0a0a0a;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        .awards-label {
+            font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase;
+            color: rgba(255,255,255,0.5); margin-bottom: 1rem; font-weight: 600;
+        }
+        .awards-title {
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
+            font-weight: 800; letter-spacing: -1px; line-height: 1.1;
+            margin-bottom: 5rem;
+        }
+        .award-item {
+            display: flex; align-items: baseline; gap: 2.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding: 2.5rem 0;
+        }
+        .award-date { font-size: 1rem; color: rgba(255,255,255,0.5); min-width: 90px; font-weight: 500; }
+        .award-title { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 700; margin-bottom: 0.4rem; }
+        .award-sub { font-size: 1rem; color: rgba(255,255,255,0.6); font-weight: 400; }
+
+        /* === PRODUCTS SECTION === */
+        .products-section {
+            padding: 12vh 8%;
+            background: #000;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        .products-label {
+            font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase;
+            color: rgba(255,255,255,0.5); margin-bottom: 1rem; font-weight: 600;
+        }
+        .products-heading {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800; letter-spacing: -2px; margin-bottom: 5rem;
+        }
+
+        /* Flagship card */
+        .flagship-card {
+            display: flex; gap: 4rem; align-items: center;
+            background: #0d0d0d; border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px; padding: 3.5rem;
+            margin-bottom: 2rem; flex-wrap: wrap;
+        }
+        .flagship-img { flex: 1; min-width: 280px; border-radius: 16px; overflow: hidden; }
+        .flagship-img img { width: 100%; display: block; border-radius: 14px; }
+        .flagship-text { flex: 1; min-width: 260px; }
+        .flagship-tag {
+            font-size: 0.8rem; letter-spacing: 2px; color: #ff3b3b;
+            text-transform: uppercase; margin-bottom: 1.2rem; font-weight: 700;
+        }
+        .flagship-name {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800; letter-spacing: -1px; margin-bottom: 1rem;
+        }
+        .flagship-desc { font-size: 1.05rem; color: rgba(255,255,255,0.7); }
+
+        /* Mini product grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 1.5rem;
+        }
+        .product-card {
+            background: #0d0d0d; border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 18px; padding: 1.8rem; text-align: center;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+        .product-card:hover {
+            border-color: rgba(255,255,255,0.25);
+            transform: translateY(-4px);
+        }
+        .product-card img { width: 100%; border-radius: 10px; margin-bottom: 1.2rem; }
+        .product-card-name { font-size: 1.05rem; font-weight: 700; color: #fff; }
+
+        /* === CONTACT SECTION === */
+        .contact-section {
+            padding: 10vh 8%;
+            background: #0a0a0a;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        .contact-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem; margin-top: 3.5rem;
+        }
+        .contact-card {
+            background: #111; border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px; padding: 2rem;
+        }
+        .contact-card-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; }
+        .contact-card-info { font-size: 1rem; color: rgba(255,255,255,0.7); }
+
+        /* === FOOTER === */
+        .footer {
+            padding: 4rem 8%;
+            background: #000;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        .footer-brand {
+            font-size: 1.3rem; font-weight: 800; letter-spacing: 3px;
+            color: #fff; margin-bottom: 2.5rem; display: inline-block;
+            text-decoration: none;
+        }
+        .footer-info { font-size: 0.9rem; line-height: 2.2; color: rgba(255,255,255,0.55); }
+        .footer-info p strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+        .footer-info a { color: rgba(255,255,255,0.55); text-decoration: underline; }
+        .footer-copy { margin-top: 2rem; font-size: 0.85rem; color: rgba(255,255,255,0.3); }
+
+        /* === UTILITY === */
+        .gsap-hidden { opacity: 0; }
+        @media (max-width: 768px) {
+            .nav { display: none; }
+            .menu-btn { display: block; }
+            .flagship-card { padding: 2rem; gap: 2rem; }
+            .stat-row { gap: 2rem; }
+            .award-item { flex-direction: column; gap: 0.5rem; }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header class="header">
-        <div class="logo">
-            <a href="#">MIGUN</a>
-        </div>
+    <!-- ===== STICKY HEADER ===== -->
+    <header class="header" id="mainHeader">
+        <a href="#" class="logo">MIGUN</a>
         <nav class="nav">
             <a href="#">Home</a>
             <div class="dropdown">
-                <a href="#series">Products <svg class="dropdown-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></a>
+                <a href="#products">Products <svg class="dropdown-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
                 <div class="dropdown-content">
                     <a href="brain-pillow.html">Brain Health Pillow</a>
-                    <a href="#series">Re:series</a>
+                    <a href="#products">Re:series</a>
                 </div>
             </div>
-            <a href="#support">Customer Center</a>
-            <a href="#about">About Us</a>
+            <a href="#contact">Customer Center</a>
+            <a href="#awards">About Us</a>
             <a href="#contact">Contact Us</a>
         </nav>
-        <button class="menu-btn" aria-label="Menu" style="color: white; z-index: 1002;">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        <button class="menu-btn" aria-label="Menu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
         </button>
     </header>
 
-    <!-- ===== HERO: Company Introduction ===== -->
-    <section class="hero slide-up">
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="hero">
         <div class="hero-bg">
-            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="MIGUN Global Healthcare">
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="MIGUN Global Healthcare" id="heroBgImg">
         </div>
         <div class="hero-content">
-            <p style="font-size: 1rem; letter-spacing: 3px; text-transform: uppercase; color: #ff3b3b; margin-bottom: 1.5rem; font-weight: 700;">Since 1988</p>
-            <h1 class="hero-title" style="font-size: 3.2rem;">The Pioneer of<br>Personal Thermal<br>Healthcare</h1>
-            <p class="hero-desc" style="color: #ddd; margin-top: 2rem; font-size: 1.15rem; line-height: 1.9; max-width: 650px;">Founded in 1988, MIGUN Life Science introduced the world's first personal thermal massager.<br>For 38 years, we have exported personal medical devices and home healthcare products worldwide,<br>leading the global popularization of K-Healthcare.</p>
+            <p class="hero-eyebrow" id="heroEyebrow">Since 1988</p>
+            <h1 class="hero-title" id="heroTitle">The Pioneer<br>of Healing.</h1>
         </div>
     </section>
 
-    <!-- ===== SECTION: Global Reach (38 Years / 50+ Countries) ===== -->
-    <section class="section text-center fade-in" style="background: #000; padding: 15vh 0; overflow: hidden;">
-        <div class="container" style="max-width: 800px;">
-            <p style="font-size: 1rem; letter-spacing: 3px; text-transform: uppercase; color: #ccc; margin-bottom: 1.5rem; font-weight: 600;">Trusted Worldwide</p>
-            <h2 style="font-size: 4rem; line-height: 1.05; margin-bottom: 2rem; color: #fff; letter-spacing: -2px; font-weight: 700;">38 Years.<br>50+ Countries.<br>One Mission.</h2>
-            <p style="font-size: 1.2rem; color: #bbb; margin-bottom: 5rem; max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.8;">From Asia to the Americas, MIGUN has delivered trusted thermal healthcare solutions across every continent for nearly four decades.</p>
-        </div>
-        <!-- Cinematic Earth Visual -->
-        <div style="position: relative; max-width: 900px; margin: 0 auto;">
-            <img src="https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Earth - Global Reach" style="width: 100%; border-radius: 50%; opacity: 0.7; box-shadow: 0 0 120px rgba(255,59,59,0.15); filter: brightness(0.9) saturate(1.2);">
-            <div style="position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 30%, #000 80%);"></div>
-            <!-- Stat Numbers over the globe -->
-            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-                <div style="font-size: 5rem; font-weight: 800; color: #fff; letter-spacing: -3px; line-height: 1;">50+</div>
-                <div style="font-size: 1.2rem; color: #ddd; letter-spacing: 2px; text-transform: uppercase; margin-top: 0.5rem;">Countries</div>
-            </div>
-        </div>
+    <!-- ===== STATEMENT 1 ===== -->
+    <section class="statement-panel" id="stmt1">
+        <p class="statement-text gsap-hidden">
+            Founded in 1988. The world's first<br>
+            personal thermal massager.<br>
+            <span class="highlight">Still leading. Still innovating.</span>
+        </p>
     </section>
 
-    <!-- ===== SECTION: Certifications / Awards ===== -->
-    <section class="section fade-in" id="about" style="background: #0a0a0a; padding: 12vh 5%; border-top: 1px solid #333;">
-        <div style="max-width: 1000px; margin: 0 auto;">
-            <p style="font-size: 1rem; letter-spacing: 3px; text-transform: uppercase; color: #ccc; margin-bottom: 1rem; font-weight: 600;">Recognition</p>
-            <h2 style="font-size: 2.8rem; color: #fff; margin-bottom: 5rem; letter-spacing: -1px; font-weight: 700; line-height: 1.1;">Certified & Awarded</h2>
-
-            <!-- CES 2023 — Most prominent -->
-            <div class="fade-in" style="border-bottom: 1px solid #333; padding-bottom: 3rem; margin-bottom: 3rem;">
-                <div style="display: flex; align-items: baseline; gap: 2rem; flex-wrap: wrap;">
-                    <span style="font-size: 1rem; color: #bbb; letter-spacing: 1px; min-width: 80px; font-weight: 600;">Jan 2023</span>
-                    <div>
-                        <h3 style="font-size: 2.2rem; color: #fff; font-weight: 700; letter-spacing: -1px; margin-bottom: 0.5rem;">CES 2023</h3>
-                        <p style="font-size: 1.1rem; color: #ccc;">Consumer Electronics Show &mdash; Official Participant, Las Vegas</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 13-Year Consecutive Award -->
-            <div class="fade-in" style="padding-bottom: 1rem;">
-                <div style="display: flex; align-items: baseline; gap: 2rem; flex-wrap: wrap;">
-                    <span style="font-size: 1rem; color: #bbb; letter-spacing: 1px; min-width: 80px; font-weight: 600;">Jul 2025</span>
-                    <div>
-                        <h3 style="font-size: 1.6rem; color: #fff; font-weight: 700; margin-bottom: 0.5rem;">Korea's Most Trusted Brand &mdash; Grand Award</h3>
-                        <p style="font-size: 1.1rem; color: #ccc;">13 Consecutive Years &middot; Medical Device Category</p>
-                    </div>
-                </div>
-            </div>
+    <!-- ===== CINEMATIC IMAGE: Global ===== -->
+    <div class="image-statement" id="globalPanel">
+        <img src="https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Global Reach" id="globalImg">
+        <div class="image-statement-text gsap-hidden">
+            <p class="image-statement-label">Global Scale</p>
+            <h2 class="image-statement-title">Trusted in<br>50+ Countries.</h2>
+            <p class="image-statement-sub">38 years. Every continent. One mission.</p>
         </div>
+    </div>
+
+    <!-- ===== STATS ROW ===== -->
+    <div class="stat-row" id="statsRow">
+        <div class="stat-block gsap-hidden">
+            <div class="stat-number"><span class="counter" data-target="38">0</span><span class="stat-unit">+</span></div>
+            <div class="stat-label">Years of Innovation</div>
+        </div>
+        <div class="stat-block gsap-hidden">
+            <div class="stat-number"><span class="counter" data-target="50">0</span><span class="stat-unit">+</span></div>
+            <div class="stat-label">Countries Served</div>
+        </div>
+        <div class="stat-block gsap-hidden">
+            <div class="stat-number"><span class="stat-unit">#</span>1</div>
+            <div class="stat-label">K-Healthcare Pioneer</div>
+        </div>
+    </div>
+
+    <!-- ===== STATEMENT 2 ===== -->
+    <section class="statement-panel" id="stmt2" style="background:#0a0a0a;">
+        <p class="statement-text gsap-hidden">
+            Where ancient thermal wisdom<br>meets precision engineering.<br>
+            <span class="highlight">This is MIGUN.</span>
+        </p>
     </section>
 
-    <!-- Section: Technology & Pain Relief -->
-    <section id="technology" class="section tech-section fade-in">
-        <div class="container">
-            <div class="tech-header text-center">
-                <h2>Through Jade Thermal Technology,<br>correct posture, and stimulate blood to<br><span class="text-red">relieve muscular pain</span></h2>
+    <!-- ===== CINEMATIC IMAGE: Technology ===== -->
+    <div class="image-statement" id="techPanel">
+        <img src="https://images.unsplash.com/photo-1530497610245-94d3c16cda28?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Thermal Technology" id="techImg">
+        <div class="image-statement-text gsap-hidden">
+            <p class="image-statement-label">Technology</p>
+            <h2 class="image-statement-title">Jade. Heat.<br>Precision.</h2>
+            <p class="image-statement-sub">Deep far-infrared penetration. Engineered for the human body.</p>
+        </div>
+    </div>
+
+    <!-- ===== AWARDS ===== -->
+    <section class="awards-section" id="awards">
+        <div style="max-width:1000px; margin: 0 auto;">
+            <p class="awards-label gsap-hidden">Recognition</p>
+            <h2 class="awards-title gsap-hidden">Certified &amp; Awarded.</h2>
+
+            <div class="award-item gsap-hidden">
+                <span class="award-date">Jan 2023</span>
+                <div>
+                    <div class="award-title">CES 2023</div>
+                    <div class="award-sub">Consumer Electronics Show &mdash; Official Participant, Las Vegas</div>
+                </div>
             </div>
-            
-            <div class="tech-rows">
-                <!-- Row 1 -->
-                <div class="tech-row slide-up">
-                    <div class="tech-img">
-                        <!-- Tech feeling image -->
-                        <img src="https://images.unsplash.com/photo-1530497610245-94d3c16cda28?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Whole Body Therapy">
-                    </div>
-                    <div class="tech-text">
-                        <h3 class="tech-title">Intensive whole body therapy</h3>
-                        <p class="tech-desc">Comprehensive thermal stimulation across major nerve lines, utilizing patented jade rolling mechanisms to promote total systemic circulation.</p>
-                    </div>
-                </div>
-
-                <!-- Row 2 -->
-                <div class="tech-row reverse slide-up">
-                    <div class="tech-img">
-                        <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Upper Body Therapy">
-                    </div>
-                    <div class="tech-text">
-                        <h3 class="tech-title">Intensive upper body care</h3>
-                        <p class="tech-desc">Focused decompression and heat application for the cervical and thoracic regions, ideal for alleviating modern posture-related stresses.</p>
-                    </div>
-                </div>
-
-                <!-- Row 3 -->
-                <div class="tech-row slide-up">
-                    <div class="tech-img">
-                        <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Lower Body Therapy">
-                    </div>
-                    <div class="tech-text">
-                        <h3 class="tech-title">Intensive lower body care</h3>
-                        <p class="tech-desc">Targeted lumbar and circulatory care to revitalize the legs and lower back, enhancing mobility and reducing fatigue.</p>
-                    </div>
+            <div class="award-item gsap-hidden">
+                <span class="award-date">Jul 2025</span>
+                <div>
+                    <div class="award-title">Korea's Most Trusted Brand &mdash; Grand Award</div>
+                    <div class="award-sub">13 Consecutive Years &middot; Medical Device Category</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== SECTION: Products Grid ===== -->
-    <section class="section fade-in" id="series" style="background: #000; padding: 12vh 5%; border-top: 1px solid #333;">
-        <div style="max-width: 1200px; margin: 0 auto;">
-            <p style="font-size: 1rem; letter-spacing: 3px; text-transform: uppercase; color: #ccc; margin-bottom: 1rem; font-weight: 600;">Our Lineup</p>
-            <h2 style="font-size: 3rem; color: #fff; margin-bottom: 5rem; letter-spacing: -1px; font-weight: 700;">Products</h2>
+    <!-- ===== PRODUCTS ===== -->
+    <section class="products-section" id="products">
+        <div style="max-width:1200px; margin:0 auto;">
+            <p class="products-label gsap-hidden">Our Lineup</p>
+            <h2 class="products-heading gsap-hidden">Products.</h2>
 
-            <!-- Re:bone — Flagship (Full width, special treatment) -->
-            <div class="fade-in" style="margin-bottom: 4rem; border-radius: 20px; overflow: hidden; position: relative; background: #0d0d0d; border: 1px solid #333;">
-                <div style="display: flex; align-items: center; gap: 3rem; padding: 3rem; flex-wrap: wrap;">
-                    <div style="flex: 1; min-width: 280px;">
-                        <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Re:bone" style="width: 100%; border-radius: 12px; opacity: 0.9;">
-                    </div>
-                    <div style="flex: 1; min-width: 250px;">
-                        <p style="font-size: 0.9rem; letter-spacing: 2px; color: #ff3b3b; text-transform: uppercase; margin-bottom: 1rem; font-weight: 700;">Flagship Model</p>
-                        <h3 style="font-size: 2.5rem; color: #fff; font-weight: 700; letter-spacing: -1px; margin-bottom: 0.75rem;">Re:bone</h3>
-                        <p style="font-size: 1.1rem; color: #ddd; letter-spacing: 0.5px;">MIGUN's personal thermal massager</p>
-                    </div>
+            <!-- Re:bone Flagship -->
+            <div class="flagship-card gsap-hidden">
+                <div class="flagship-img">
+                    <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80" alt="Re:bone Flagship">
+                </div>
+                <div class="flagship-text">
+                    <p class="flagship-tag">Flagship Model</p>
+                    <h3 class="flagship-name">Re:bone</h3>
+                    <p class="flagship-desc">MIGUN's personal thermal massager.<br>The definitive home healthcare experience.</p>
                 </div>
             </div>
 
-            <!-- Other Products Grid -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
-                <!-- Re:bone Lite -->
-                <div class="fade-in" style="border-radius: 16px; overflow: hidden; background: #0d0d0d; border: 1px solid #333; padding: 1.5rem; text-align: center;">
-                    <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Re:bone Lite" style="width: 100%; border-radius: 8px; margin-bottom: 1rem; opacity: 0.9;">
-                    <p style="font-size: 1.05rem; color: #fff; font-weight: 600;">Re:bone Lite</p>
+            <!-- Grid -->
+            <div class="products-grid">
+                <div class="product-card gsap-hidden">
+                    <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Re:bone Lite">
+                    <div class="product-card-name">Re:bone Lite</div>
                 </div>
-                <!-- Re:vive -->
-                <div class="fade-in" style="border-radius: 16px; overflow: hidden; background: #0d0d0d; border: 1px solid #333; padding: 1.5rem; text-align: center;">
-                    <img src="https://images.unsplash.com/photo-1530497610245-94d3c16cda28?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Re:vive" style="width: 100%; border-radius: 8px; margin-bottom: 1rem; opacity: 0.9;">
-                    <p style="font-size: 1.05rem; color: #fff; font-weight: 600;">Re:vive</p>
+                <div class="product-card gsap-hidden">
+                    <img src="https://images.unsplash.com/photo-1530497610245-94d3c16cda28?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Re:vive">
+                    <div class="product-card-name">Re:vive</div>
                 </div>
-                <!-- Re:ach -->
-                <div class="fade-in" style="border-radius: 16px; overflow: hidden; background: #0d0d0d; border: 1px solid #333; padding: 1.5rem; text-align: center;">
-                    <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Re:ach" style="width: 100%; border-radius: 8px; margin-bottom: 1rem; opacity: 0.9;">
-                    <p style="font-size: 1.05rem; color: #fff; font-weight: 600;">Re:ach</p>
+                <div class="product-card gsap-hidden">
+                    <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Re:ach">
+                    <div class="product-card-name">Re:ach</div>
                 </div>
-                <!-- day:Re -->
-                <div class="fade-in" style="border-radius: 16px; overflow: hidden; background: #0d0d0d; border: 1px solid #333; padding: 1.5rem; text-align: center;">
-                    <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="day:Re" style="width: 100%; border-radius: 8px; margin-bottom: 1rem; opacity: 0.9;">
-                    <p style="font-size: 1.05rem; color: #fff; font-weight: 600;">day:Re</p>
+                <div class="product-card gsap-hidden">
+                    <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="day:Re">
+                    <div class="product-card-name">day:Re</div>
                 </div>
-                <!-- MIGUN DOCTOR LEG -->
-                <div class="fade-in" style="border-radius: 16px; overflow: hidden; background: #0d0d0d; border: 1px solid #333; padding: 1.5rem; text-align: center;">
-                    <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="MIGUN DOCTOR LEG" style="width: 100%; border-radius: 8px; margin-bottom: 1rem; opacity: 0.9;">
-                    <p style="font-size: 1.05rem; color: #fff; font-weight: 600;">MIGUN DOCTOR LEG</p>
+                <div class="product-card gsap-hidden">
+                    <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="MIGUN DOCTOR LEG">
+                    <div class="product-card-name">MIGUN DOCTOR LEG</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Support & Contact Dark Blocks -->
-    <section id="support" class="section fade-in" style="background: #0a0a0a; padding: 10vh 0; border-top: 1px solid #333;">
-        <div class="container">
-            <h2 class="cert-title" style="color: #fff; text-align: center; margin-bottom: 4rem; font-size: 2rem;">Get in Touch</h2>
-            
-            <div class="bottom-product-grid">
-                <div class="bp-card" style="background: #000; padding: 2rem; border-radius: 12px; border: 1px solid #333;">
-                    <h3 style="color: #fff; font-size: 1.3rem; margin-bottom: 1rem;">Customer Center</h3>
-                    <p style="color: #ddd; font-size: 1.05rem;">1588-0000</p>
+    <!-- ===== CONTACT ===== -->
+    <section class="contact-section" id="contact">
+        <div style="max-width:1000px; margin:0 auto;">
+            <p class="awards-label gsap-hidden">Connect</p>
+            <h2 class="awards-title gsap-hidden">Get in Touch.</h2>
+            <div class="contact-grid">
+                <div class="contact-card gsap-hidden">
+                    <div class="contact-card-title">Customer Center</div>
+                    <div class="contact-card-info">1588-0000</div>
                 </div>
-                <div class="bp-card" style="background: #000; padding: 2rem; border-radius: 12px; border: 1px solid #333;">
-                    <h3 style="color: #fff; font-size: 1.3rem; margin-bottom: 1rem;">Global Support</h3>
-                    <p style="color: #ddd; font-size: 1.05rem;">migunlife@migunlife.co.kr</p>
+                <div class="contact-card gsap-hidden">
+                    <div class="contact-card-title">Global Support</div>
+                    <div class="contact-card-info">migunlife@migunlife.co.kr</div>
                 </div>
-                <div class="bp-card" style="background: #000; padding: 2rem; border-radius: 12px; border: 1px solid #333;">
-                    <h3 style="color: #fff; font-size: 1.3rem; margin-bottom: 1rem;">Partnerships</h3>
-                    <p style="color: #ddd; font-size: 1.05rem;">business@migun.com</p>
+                <div class="contact-card gsap-hidden">
+                    <div class="contact-card-title">Partnerships</div>
+                    <div class="contact-card-info">business@migun.com</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ===== FOOTER ===== -->
-    <footer id="contact" style="background: #000; border-top: 1px solid #333; padding: 4rem 5%;">
-        <div style="max-width: 1200px; margin: 0 auto;">
-            <div style="margin-bottom: 2rem;">
-                <a href="#" style="font-size: 1.4rem; font-weight: 800; color: #fff; text-decoration: none; letter-spacing: 2px;">MIGUN</a>
-            </div>
-            <div style="color: #bbb; font-size: 0.95rem; line-height: 2.4;">
-                <p style="color: #fff; font-weight: 700; font-size: 1rem; margin-bottom: 0.5rem;">MIGUN Life Co. Ltd</p>
-                <p>CEO: Jacob(Hun Cheol) Chang &nbsp;|&nbsp; Business Registration Number: 307-81-05211</p>
-                <p>Head Office: 13F, Kolon Digital Tower Billant, 30, Digital-Ro 32Gil, Guro-Gu, Seoul, Republic of Korea (08390)</p>
-                <p>Fax: 02-6951-2884 &nbsp;|&nbsp; Contact us: <a href="mailto:migunlife@migunlife.co.kr" style="color: #bbb; text-decoration: underline;">migunlife@migunlife.co.kr</a></p>
-                <p style="margin-top: 2rem; color: #888;">Copyright MIGUN INC. All Rights Reserved.</p>
-            </div>
+    <footer class="footer">
+        <a href="#" class="footer-brand">MIGUN</a>
+        <div class="footer-info">
+            <p><strong>MIGUN Life Co. Ltd</strong></p>
+            <p>CEO: Jacob(Hun Cheol) Chang &nbsp;|&nbsp; Business Registration Number: 307-81-05211</p>
+            <p>Head Office: 13F, Kolon Digital Tower Billant, 30, Digital-Ro 32Gil, Guro-Gu, Seoul, Republic of Korea (08390)</p>
+            <p>Fax: 02-6951-2884 &nbsp;|&nbsp; <a href="mailto:migunlife@migunlife.co.kr">migunlife@migunlife.co.kr</a></p>
         </div>
+        <p class="footer-copy">Copyright MIGUN INC. All Rights Reserved.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- ===== GSAP ANIMATIONS ===== -->
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // ------- HERO ENTRANCE -------
+        const heroTl = gsap.timeline({ delay: 0.3 });
+        heroTl
+            .to('#heroBgImg', { scale: 1, duration: 2.0, ease: 'power3.out' })
+            .to('#heroEyebrow', { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out' }, '-=1.5')
+            .to('#heroTitle', { opacity: 1, y: 0, duration: 1.0, ease: 'power3.out' }, '-=0.7');
+
+        // Set initial states
+        gsap.set('#heroTitle, #heroEyebrow', { y: 40 });
+        gsap.set('#heroBgImg', { scale: 1.08 });
+
+        // Hero parallax
+        gsap.to('#heroBgImg', {
+            yPercent: 30,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '#hero',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: true,
+            }
+        });
+
+        // ------- STATEMENT 1 -------
+        gsap.to('#stmt1 .statement-text', {
+            opacity: 1, y: 0,
+            duration: 1.0, ease: 'power3.out',
+            scrollTrigger: {
+                trigger: '#stmt1',
+                start: 'top 75%',
+                toggleActions: 'play none none none'
+            }
+        });
+        gsap.set('#stmt1 .statement-text', { y: 60 });
+
+        // ------- GLOBAL PANEL IMAGE PARALLAX -------
+        gsap.to('#globalImg', {
+            yPercent: 15,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '#globalPanel',
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: true,
+            }
+        });
+        gsap.to('#globalPanel .image-statement-text', {
+            opacity: 1, y: 0,
+            duration: 1.0, ease: 'power3.out',
+            scrollTrigger: {
+                trigger: '#globalPanel',
+                start: 'top 60%',
+            }
+        });
+        gsap.set('#globalPanel .image-statement-text', { y: 50 });
+
+        // ------- STATS -------
+        gsap.utils.toArray('#statsRow .stat-block').forEach((el, i) => {
+            gsap.to(el, {
+                opacity: 1, y: 0, duration: 0.8,
+                delay: i * 0.15, ease: 'power3.out',
+                scrollTrigger: { trigger: '#statsRow', start: 'top 75%' }
+            });
+        });
+        gsap.set('#statsRow .stat-block', { y: 40 });
+
+        // Counter animation
+        document.querySelectorAll('.counter').forEach(counter => {
+            const target = parseInt(counter.dataset.target);
+            ScrollTrigger.create({
+                trigger: counter,
+                start: 'top 80%',
+                onEnter: () => {
+                    gsap.to(counter, {
+                        textContent: target,
+                        duration: 1.8,
+                        ease: 'power2.out',
+                        snap: { textContent: 1 },
+                        roundProps: 'textContent'
+                    });
+                }
+            });
+        });
+
+        // ------- STATEMENT 2 -------
+        gsap.to('#stmt2 .statement-text', {
+            opacity: 1, y: 0, duration: 1.0, ease: 'power3.out',
+            scrollTrigger: { trigger: '#stmt2', start: 'top 75%' }
+        });
+        gsap.set('#stmt2 .statement-text', { y: 60 });
+
+        // ------- TECH PANEL -------
+        gsap.to('#techImg', {
+            yPercent: 15, ease: 'none',
+            scrollTrigger: {
+                trigger: '#techPanel', start: 'top bottom', end: 'bottom top', scrub: true,
+            }
+        });
+        gsap.to('#techPanel .image-statement-text', {
+            opacity: 1, y: 0, duration: 1.0, ease: 'power3.out',
+            scrollTrigger: { trigger: '#techPanel', start: 'top 60%' }
+        });
+        gsap.set('#techPanel .image-statement-text', { y: 50 });
+
+        // ------- GENERIC STAGGER: all .gsap-hidden -------
+        // Sections not yet animated
+        gsap.utils.toArray('.gsap-hidden').forEach(el => {
+            if (el.dataset.animated) return; // skip if already handled
+            gsap.to(el, {
+                opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 82%',
+                    toggleActions: 'play none none none'
+                }
+            });
+        });
+        gsap.utils.toArray('.gsap-hidden').forEach(el => {
+            if (!el.style.transform) gsap.set(el, { y: 35 });
+        });
+
+        // ------- HEADER SCROLL EFFECT -------
+        ScrollTrigger.create({
+            start: 'top -80',
+            onUpdate: (self) => {
+                const header = document.getElementById('mainHeader');
+                if (self.progress > 0) {
+                    header.style.background = 'rgba(0,0,0,0.85)';
+                } else {
+                    header.style.background = 'rgba(0,0,0,0.6)';
+                }
+            }
+        });
+    </script>
+
 </body>
 </html>

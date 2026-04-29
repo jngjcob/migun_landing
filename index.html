@@ -69,42 +69,29 @@
         .dropdown-content a:hover { color: #000; background: rgba(0,0,0,0.05); }
         .menu-btn { display: none; background: none; border: none; color: #111; cursor: pointer; }
 
-        /* === HERO (Full Screen) === */
+        /* === HERO (Containerized Video) === */
         .hero {
-            height: 100vh; width: 100%; position: relative;
+            position: relative;
+            min-height: 100vh;
             display: flex; flex-direction: column;
             align-items: center; justify-content: center;
-            text-align: center; overflow: hidden;
+            text-align: center;
+            padding: 120px 5% 60px 5%; /* Leave space for header */
+            background: #ffffff;
             z-index: 1;
         }
         .hero-bg {
-            position: absolute; inset: 0; z-index: -1;
-            width: 100%; height: 100%;
-            background: #000;
+            position: relative;
+            width: 100%; max-width: 1400px;
+            margin: 0 auto;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
         .hero-bg video {
-            width: 100%; height: 100%; object-fit: cover;
-            filter: brightness(0.4);
-            transform: scale(1.08); /* GSAP will animate this */
+            width: 100%; height: auto; display: block;
         }
-        .hero-bg::after {
-            content: '';
-            position: absolute; inset: 0;
-            background: linear-gradient(to bottom, transparent 50%, #000 100%);
-        }
-        .hero-content { position: relative; z-index: 1; padding: 0 5%; }
-        .hero-eyebrow {
-            font-size: 0.85rem; font-weight: 700; letter-spacing: 4px;
-            text-transform: uppercase; color: #ff3b3b;
-            opacity: 0; /* GSAP animate in */
-            margin-bottom: 1.5rem;
-        }
-        .hero-title {
-            font-size: clamp(3rem, 8vw, 7rem);
-            font-weight: 800; letter-spacing: -3px; line-height: 1.0;
-            color: #fff; opacity: 0;
-            margin-bottom: 0;
-        }
+
 
         /* === SCROLL SECTIONS (Apple-style) === */
         .panel {
@@ -326,12 +313,8 @@
 
     <!-- ===== HERO ===== -->
     <section class="hero" id="hero">
-        <div class="hero-bg">
-            <video src="assets/videos/hero_loop.mp4" autoplay loop muted playsinline id="heroBgVideo"></video>
-        </div>
-        <div class="hero-content">
-            <p class="hero-eyebrow" id="heroEyebrow">Since 1988</p>
-            <h1 class="hero-title" id="heroTitle">The Pioneer<br>of Healing.</h1>
+        <div class="hero-bg" id="heroBgWrapper">
+            <video src="assets/videos/hero_full.mp4" autoplay loop muted playsinline id="heroBgVideo"></video>
         </div>
     </section>
 
@@ -536,26 +519,8 @@
         gsap.registerPlugin(ScrollTrigger);
 
         // ------- HERO ENTRANCE -------
-        const heroTl = gsap.timeline({ delay: 0.3 });
-        heroTl
-            .to('#heroBgVideo', { scale: 1, duration: 2.0, ease: 'power3.out' })
-            .to('#heroEyebrow', { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out' }, '-=1.5')
-            .to('#heroTitle', { opacity: 1, y: 0, duration: 1.0, ease: 'power3.out' }, '-=0.7');
-
-        // Set initial states
-        gsap.set('#heroTitle, #heroEyebrow', { y: 40 });
-        gsap.set('#heroBgVideo', { scale: 1.08 });
-
-        // Hero parallax
-        gsap.to('#heroBgVideo', {
-            yPercent: 30,
-            ease: 'none',
-            scrollTrigger: {
-                trigger: '#hero',
-                start: 'top top',
-                end: 'bottom top',
-                scrub: true,
-            }
+        gsap.from('#heroBgWrapper', { 
+            opacity: 0, y: 40, duration: 1.5, ease: 'power3.out', delay: 0.3 
         });
 
         // ------- STATEMENT 1 -------

@@ -1,14 +1,14 @@
 /* Base & Variables for Medical Tech Aesthetic */
 :root {
-    --migun-red: #ff3b3b;
-    --migun-blue: #111111;
-    --text-dark: #ffffff;
-    --text-gray: #a1a1aa;
-    --text-light: #52525b;
-    --bg-white: #000000;
-    --bg-light-gray: #0a0a0a;
-    --bg-gray: #111111;
-    --border-color: #333333;
+    --migun-red: #d32f2f;
+    --migun-blue: #1a365d;
+    --text-dark: #111111;
+    --text-gray: #555555;
+    --text-light: #888888;
+    --bg-white: #ffffff;
+    --bg-light-gray: #fdfbf7; /* Ivory/Beige */
+    --bg-gray: #f5f5f0;
+    --border-color: #e5e5e0;
     
     --font-sans: 'Inter', sans-serif;
     --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -80,7 +80,7 @@ h1, h2, h3, h4 {
     position: absolute; left: 50%; transform: translateX(-50%);
     font-size: 1.4rem; font-weight: 800; letter-spacing: 2px; 
 }
-.logo a { text-decoration: none; color: #fff; }
+.logo a { text-decoration: none; color: var(--text-dark); }
 .logo-red { color: var(--migun-red); }
 
 .nav {
@@ -95,7 +95,7 @@ h1, h2, h3, h4 {
     text-decoration: none;
     transition: color 0.3s ease;
 }
-.nav a:hover { color: #fff; }
+.nav a:hover { color: var(--text-dark); }
 
 /* Dropdown */
 .dropdown {
@@ -113,13 +113,13 @@ h1, h2, h3, h4 {
     position: absolute;
     top: 100%;
     left: 2rem;
-    background-color: #111;
+    background-color: var(--bg-white);
     min-width: 200px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     border-radius: 8px;
     padding: 0.5rem 0;
     z-index: 1001;
-    border: 1px solid #333;
+    border: 1px solid var(--border-color);
 }
 .dropdown:hover .dropdown-content {
     display: block;
@@ -138,8 +138,8 @@ h1, h2, h3, h4 {
     font-size: 0.85rem;
 }
 .dropdown-content a:hover {
-    background-color: #222;
-    color: #fff;
+    background-color: var(--bg-light-gray);
+    color: var(--text-dark);
 }
 
 /* Immersive Page (Brain Pillow) */

@@ -18,8 +18,8 @@
         html { scroll-behavior: auto; } /* GSAP handles scroll */
         body {
             font-family: 'Inter', sans-serif;
-            background: #000;
-            color: #fff;
+            background: #ffffff;
+            color: #111111;
             overflow-x: hidden;
             line-height: 1.6;
         }
@@ -33,29 +33,29 @@
             align-items: center;
             justify-content: space-between;
             padding: 1.1rem 5%;
-            background: rgba(0,0,0,0.6);
+            background: rgba(255,255,255,0.7);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255,255,255,0.07);
+            border-bottom: 1px solid rgba(0,0,0,0.07);
         }
         .logo {
             position: absolute; left: 50%; transform: translateX(-50%);
             font-size: 1.3rem; font-weight: 800; letter-spacing: 3px;
-            color: #fff; text-decoration: none;
+            color: #111; text-decoration: none;
         }
         .nav { margin-left: auto; display: flex; align-items: center; gap: 0; }
         .nav a {
             margin-left: 2rem; font-size: 0.82rem; font-weight: 500;
-            color: rgba(255,255,255,0.7); text-decoration: none;
+            color: rgba(0,0,0,0.6); text-decoration: none;
             transition: color 0.3s;
         }
-        .nav a:hover { color: #fff; }
+        .nav a:hover { color: #000; }
         .dropdown { position: relative; display: inline-block; }
         .dropdown-icon { vertical-align: middle; margin-left: 2px; }
         .dropdown-content {
             display: none; position: absolute; top: calc(100% + 10px);
-            left: 0; background: rgba(10,10,10,0.95);
-            border: 1px solid rgba(255,255,255,0.1);
+            left: 0; background: rgba(255,255,255,0.95);
+            border: 1px solid rgba(0,0,0,0.1);
             border-radius: 10px; padding: 0.5rem 0; min-width: 200px;
             backdrop-filter: blur(20px);
         }
@@ -63,11 +63,11 @@
         @keyframes dropFade { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
         .dropdown-content a {
             display: block; padding: 0.75rem 1.25rem; font-size: 0.85rem;
-            color: rgba(255,255,255,0.7); text-decoration: none; margin: 0;
+            color: rgba(0,0,0,0.7); text-decoration: none; margin: 0;
             transition: color 0.2s, background 0.2s;
         }
-        .dropdown-content a:hover { color: #fff; background: rgba(255,255,255,0.05); }
-        .menu-btn { display: none; background: none; border: none; color: #fff; cursor: pointer; }
+        .dropdown-content a:hover { color: #000; background: rgba(0,0,0,0.05); }
+        .menu-btn { display: none; background: none; border: none; color: #111; cursor: pointer; }
 
         /* === HERO (Full Screen) === */
         .hero {
@@ -120,7 +120,7 @@
         .statement-panel {
             min-height: 100vh;
             display: flex; align-items: center; justify-content: center;
-            background: #000;
+            background: #ffffff;
             text-align: center; padding: 10vh 8%;
         }
         .statement-text {
@@ -128,7 +128,7 @@
             font-weight: 800; letter-spacing: -2px; line-height: 1.1;
             max-width: 900px;
         }
-        .statement-text .highlight { color: #ff3b3b; }
+        .statement-text .highlight { color: #d32f2f; }
 
         /* === CINEMATIC IMAGE PANELS === */
         .image-statement {
@@ -163,30 +163,30 @@
         .stat-row {
             display: flex; gap: 4rem; flex-wrap: wrap;
             justify-content: center; padding: 12vh 8%;
-            background: #000; text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.08);
+            background: #ffffff; text-align: center;
+            border-top: 1px solid rgba(0,0,0,0.08);
         }
         .stat-block { flex: 1; min-width: 180px; }
         .stat-number {
             font-size: clamp(3.5rem, 7vw, 6rem);
             font-weight: 800; letter-spacing: -3px; line-height: 1;
-            color: #fff;
+            color: #111111;
         }
-        .stat-unit { color: #ff3b3b; }
+        .stat-unit { color: #d32f2f; }
         .stat-label {
-            font-size: 1rem; color: rgba(255,255,255,0.7);
+            font-size: 1rem; color: rgba(0,0,0,0.7);
             margin-top: 0.75rem; font-weight: 500;
         }
 
         /* === AWARDS SECTION === */
         .awards-section {
             padding: 12vh 8%;
-            background: #0a0a0a;
-            border-top: 1px solid rgba(255,255,255,0.08);
+            background: #fdfbf7;
+            border-top: 1px solid rgba(0,0,0,0.08);
         }
         .awards-label {
             font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase;
-            color: rgba(255,255,255,0.5); margin-bottom: 1rem; font-weight: 600;
+            color: rgba(0,0,0,0.5); margin-bottom: 1rem; font-weight: 600;
         }
         .awards-title {
             font-size: clamp(2.2rem, 4vw, 3.5rem);
@@ -195,22 +195,22 @@
         }
         .award-item {
             display: flex; align-items: baseline; gap: 2.5rem;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
+            border-bottom: 1px solid rgba(0,0,0,0.08);
             padding: 2.5rem 0;
         }
-        .award-date { font-size: 1rem; color: rgba(255,255,255,0.5); min-width: 90px; font-weight: 500; }
+        .award-date { font-size: 1rem; color: rgba(0,0,0,0.5); min-width: 90px; font-weight: 500; }
         .award-title { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 700; margin-bottom: 0.4rem; }
-        .award-sub { font-size: 1rem; color: rgba(255,255,255,0.6); font-weight: 400; }
+        .award-sub { font-size: 1rem; color: rgba(0,0,0,0.6); font-weight: 400; }
 
         /* === PRODUCTS SECTION === */
         .products-section {
             padding: 12vh 8%;
-            background: #000;
-            border-top: 1px solid rgba(255,255,255,0.08);
+            background: #ffffff;
+            border-top: 1px solid rgba(0,0,0,0.08);
         }
         .products-label {
             font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase;
-            color: rgba(255,255,255,0.5); margin-bottom: 1rem; font-weight: 600;
+            color: rgba(0,0,0,0.5); margin-bottom: 1rem; font-weight: 600;
         }
         .products-heading {
             font-size: clamp(2.5rem, 5vw, 4rem);
@@ -220,7 +220,7 @@
         /* Flagship card */
         .flagship-card {
             display: flex; gap: 4rem; align-items: center;
-            background: #0d0d0d; border: 1px solid rgba(255,255,255,0.1);
+            background: #fdfbf7; border: 1px solid rgba(0,0,0,0.08);
             border-radius: 24px; padding: 3.5rem;
             margin-bottom: 2rem; flex-wrap: wrap;
         }
@@ -228,14 +228,14 @@
         .flagship-img img { width: 100%; display: block; border-radius: 14px; }
         .flagship-text { flex: 1; min-width: 260px; }
         .flagship-tag {
-            font-size: 0.8rem; letter-spacing: 2px; color: #ff3b3b;
+            font-size: 0.8rem; letter-spacing: 2px; color: #d32f2f;
             text-transform: uppercase; margin-bottom: 1.2rem; font-weight: 700;
         }
         .flagship-name {
             font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 800; letter-spacing: -1px; margin-bottom: 1rem;
         }
-        .flagship-desc { font-size: 1.05rem; color: rgba(255,255,255,0.7); }
+        .flagship-desc { font-size: 1.05rem; color: rgba(0,0,0,0.7); }
 
         /* Mini product grid */
         .products-grid {
@@ -244,49 +244,51 @@
             gap: 1.5rem;
         }
         .product-card {
-            background: #0d0d0d; border: 1px solid rgba(255,255,255,0.08);
+            background: #fdfbf7; border: 1px solid rgba(0,0,0,0.08);
             border-radius: 18px; padding: 1.8rem; text-align: center;
-            transition: border-color 0.3s, transform 0.3s;
+            transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
         }
         .product-card:hover {
-            border-color: rgba(255,255,255,0.25);
+            border-color: rgba(0,0,0,0.15);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.05);
             transform: translateY(-4px);
         }
         .product-card img { width: 100%; border-radius: 10px; margin-bottom: 1.2rem; }
-        .product-card-name { font-size: 1.05rem; font-weight: 700; color: #fff; }
+        .product-card-name { font-size: 1.05rem; font-weight: 700; color: #111111; }
 
         /* === CONTACT SECTION === */
         .contact-section {
             padding: 10vh 8%;
-            background: #0a0a0a;
-            border-top: 1px solid rgba(255,255,255,0.08);
+            background: #fdfbf7;
+            border-top: 1px solid rgba(0,0,0,0.08);
         }
         .contact-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 1.5rem; margin-top: 3.5rem;
         }
         .contact-card {
-            background: #111; border: 1px solid rgba(255,255,255,0.08);
+            background: #ffffff; border: 1px solid rgba(0,0,0,0.08);
             border-radius: 16px; padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
         }
         .contact-card-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; }
-        .contact-card-info { font-size: 1rem; color: rgba(255,255,255,0.7); }
+        .contact-card-info { font-size: 1rem; color: rgba(0,0,0,0.7); }
 
         /* === FOOTER === */
         .footer {
             padding: 4rem 8%;
-            background: #000;
-            border-top: 1px solid rgba(255,255,255,0.08);
+            background: #ffffff;
+            border-top: 1px solid rgba(0,0,0,0.08);
         }
         .footer-brand {
             font-size: 1.3rem; font-weight: 800; letter-spacing: 3px;
-            color: #fff; margin-bottom: 2.5rem; display: inline-block;
+            color: #111111; margin-bottom: 2.5rem; display: inline-block;
             text-decoration: none;
         }
-        .footer-info { font-size: 0.9rem; line-height: 2.2; color: rgba(255,255,255,0.55); }
-        .footer-info p strong { color: rgba(255,255,255,0.85); font-weight: 600; }
-        .footer-info a { color: rgba(255,255,255,0.55); text-decoration: underline; }
-        .footer-copy { margin-top: 2rem; font-size: 0.85rem; color: rgba(255,255,255,0.3); }
+        .footer-info { font-size: 0.9rem; line-height: 2.2; color: rgba(0,0,0,0.55); }
+        .footer-info p strong { color: rgba(0,0,0,0.85); font-weight: 600; }
+        .footer-info a { color: rgba(0,0,0,0.55); text-decoration: underline; }
+        .footer-copy { margin-top: 2rem; font-size: 0.85rem; color: rgba(0,0,0,0.4); }
 
         /* === UTILITY === */
         .gsap-hidden { opacity: 0; }
@@ -450,7 +452,7 @@
     </section>
 
     <!-- ===== RE:BONE DETAILS ===== -->
-    <section class="rebone-details" id="reboneDetails" style="padding: 12vh 5%; background: #000; border-top: 1px solid rgba(255,255,255,0.08);">
+    <section class="rebone-details" id="reboneDetails" style="padding: 12vh 5%; background: #fdfbf7; border-top: 1px solid rgba(0,0,0,0.08);">
         <div style="max-width: 1200px; margin: 0 auto;">
             
             <!-- Row 1 -->
@@ -459,20 +461,20 @@
                     <img src="assets/images/webp1.webp" alt="Whole Body Therapy" style="width: 100%; display: block; border-radius: 12px; opacity: 0.9;">
                 </div>
                 <div style="flex: 1; min-width: 300px;">
-                    <p style="font-size: 0.85rem; letter-spacing: 2px; color: #ff3b3b; text-transform: uppercase; margin-bottom: 1rem; font-weight: 700;">Care Point 1</p>
-                    <h3 style="font-size: clamp(2rem, 4vw, 2.5rem); color: #fff; font-weight: 800; letter-spacing: -1px; margin-bottom: 1rem; line-height: 1.1;">Intensive whole body therapy</h3>
-                    <p style="font-size: 1.1rem; color: #ddd; font-weight: 600; margin-bottom: 1.5rem;">Provides thermal compression and stimulation.</p>
-                    <p style="font-size: 1rem; color: #888; line-height: 1.8;">The upper Jade set(2 sets of 5 Jades Thermo Set) for the upper body delivers the delicate thermal compression and stimulation as well as the lower body periodically inflates the aircell from the calf to the toe, providing pressure stimulation and thermal heat.</p>
+                    <p style="font-size: 0.85rem; letter-spacing: 2px; color: #d32f2f; text-transform: uppercase; margin-bottom: 1rem; font-weight: 700;">Care Point 1</p>
+                    <h3 style="font-size: clamp(2rem, 4vw, 2.5rem); color: #111111; font-weight: 800; letter-spacing: -1px; margin-bottom: 1rem; line-height: 1.1;">Intensive whole body therapy</h3>
+                    <p style="font-size: 1.1rem; color: #555555; font-weight: 600; margin-bottom: 1.5rem;">Provides thermal compression and stimulation.</p>
+                    <p style="font-size: 1rem; color: #777777; line-height: 1.8;">The upper Jade set(2 sets of 5 Jades Thermo Set) for the upper body delivers the delicate thermal compression and stimulation as well as the lower body periodically inflates the aircell from the calf to the toe, providing pressure stimulation and thermal heat.</p>
                 </div>
             </div>
 
             <!-- Row 2 -->
             <div class="rebone-row gsap-hidden flex-reverse" style="display: flex; gap: 4rem; align-items: center; margin-bottom: 8rem; flex-wrap: wrap-reverse;">
                 <div style="flex: 1; min-width: 300px;">
-                    <p style="font-size: 0.85rem; letter-spacing: 2px; color: #ff3b3b; text-transform: uppercase; margin-bottom: 1rem; font-weight: 700;">Care Point 2</p>
-                    <h3 style="font-size: clamp(2rem, 4vw, 2.5rem); color: #fff; font-weight: 800; letter-spacing: -1px; margin-bottom: 1rem; line-height: 1.1;">Intensive upper body care</h3>
-                    <p style="font-size: 1.1rem; color: #ddd; font-weight: 600; margin-bottom: 1.5rem;">2 sets of 5 Jades Thermo-Set each moving along the spinal line, applying acupressure and thermal stimulation at the same time.</p>
-                    <p style="font-size: 1rem; color: #888; line-height: 1.8;">Programmed 2 sets of 5 Jade Thermo-set manage the spinal line leading to the cervical, thoracic and lumbar vertebrae.</p>
+                    <p style="font-size: 0.85rem; letter-spacing: 2px; color: #d32f2f; text-transform: uppercase; margin-bottom: 1rem; font-weight: 700;">Care Point 2</p>
+                    <h3 style="font-size: clamp(2rem, 4vw, 2.5rem); color: #111111; font-weight: 800; letter-spacing: -1px; margin-bottom: 1rem; line-height: 1.1;">Intensive upper body care</h3>
+                    <p style="font-size: 1.1rem; color: #555555; font-weight: 600; margin-bottom: 1.5rem;">2 sets of 5 Jades Thermo-Set each moving along the spinal line, applying acupressure and thermal stimulation at the same time.</p>
+                    <p style="font-size: 1rem; color: #777777; line-height: 1.8;">Programmed 2 sets of 5 Jade Thermo-set manage the spinal line leading to the cervical, thoracic and lumbar vertebrae.</p>
                 </div>
                  <div style="flex: 1; min-width: 300px; border-radius: 12px; overflow: hidden;">
                     <img src="assets/images/webp2.webp" alt="Upper Body Care" style="width: 100%; display: block; border-radius: 12px; opacity: 0.9;">
@@ -485,10 +487,10 @@
                     <img src="assets/images/webp3.webp" alt="Lower Body Therapy" style="width: 100%; display: block; border-radius: 12px; opacity: 0.9;">
                 </div>
                 <div style="flex: 1; min-width: 300px;">
-                    <p style="font-size: 0.85rem; letter-spacing: 2px; color: #ff3b3b; text-transform: uppercase; margin-bottom: 1rem; font-weight: 700;">Care Point 3</p>
-                    <h3 style="font-size: clamp(2rem, 4vw, 2.5rem); color: #fff; font-weight: 800; letter-spacing: -1px; margin-bottom: 1rem; line-height: 1.1;">Intensive lower body care</h3>
-                    <p style="font-size: 1.1rem; color: #ddd; font-weight: 600; margin-bottom: 1.5rem;">Helps relieve muscle pain on your leg by using combined thermal compression massage which is consist of 16 air cells and Jade Thermo-sets.</p>
-                    <p style="font-size: 1rem; color: #888; line-height: 1.8;">With 16 air cells that repeatedly contract and expand and the Jade Thermo-sets warming and stimulating the body, it helps relieve muscle pain on your legs by repeatedly warming and pressing the lower body.</p>
+                    <p style="font-size: 0.85rem; letter-spacing: 2px; color: #d32f2f; text-transform: uppercase; margin-bottom: 1rem; font-weight: 700;">Care Point 3</p>
+                    <h3 style="font-size: clamp(2rem, 4vw, 2.5rem); color: #111111; font-weight: 800; letter-spacing: -1px; margin-bottom: 1rem; line-height: 1.1;">Intensive lower body care</h3>
+                    <p style="font-size: 1.1rem; color: #555555; font-weight: 600; margin-bottom: 1.5rem;">Helps relieve muscle pain on your leg by using combined thermal compression massage which is consist of 16 air cells and Jade Thermo-sets.</p>
+                    <p style="font-size: 1rem; color: #777777; line-height: 1.8;">With 16 air cells that repeatedly contract and expand and the Jade Thermo-sets warming and stimulating the body, it helps relieve muscle pain on your legs by repeatedly warming and pressing the lower body.</p>
                 </div>
             </div>
 
@@ -660,9 +662,9 @@
             onUpdate: (self) => {
                 const header = document.getElementById('mainHeader');
                 if (self.progress > 0) {
-                    header.style.background = 'rgba(0,0,0,0.85)';
+                    header.style.background = 'rgba(255,255,255,0.9)';
                 } else {
-                    header.style.background = 'rgba(0,0,0,0.6)';
+                    header.style.background = 'rgba(255,255,255,0.7)';
                 }
             }
         });

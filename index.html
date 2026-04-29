@@ -70,18 +70,26 @@
         .menu-btn { display: none; background: none; border: none; color: #fff; cursor: pointer; }
 
         /* === HERO (Full Screen, Pinned) === */
+        .hero-container {
+            position: relative;
+            height: 300vh; /* Scrolldown distance for video */
+        }
         .hero {
-            height: 100vh; width: 100%; position: relative;
+            height: 100vh; width: 100%; position: sticky;
+            top: 0;
             display: flex; flex-direction: column;
             align-items: center; justify-content: center;
             text-align: center; overflow: hidden;
+            z-index: 1;
         }
         .hero-bg {
-            position: absolute; inset: 0; z-index: 0;
+            position: absolute; inset: 0; z-index: -1;
+            width: 100%; height: 100%;
+            background: #000;
         }
-        .hero-bg img {
+        .hero-bg canvas {
             width: 100%; height: 100%; object-fit: cover;
-            filter: brightness(0.35);
+            filter: brightness(0.4);
             transform: scale(1.08); /* GSAP will animate this */
         }
         .hero-bg::after {
@@ -320,15 +328,17 @@
     </header>
 
     <!-- ===== HERO ===== -->
-    <section class="hero" id="hero">
-        <div class="hero-bg">
-            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="MIGUN Global Healthcare" id="heroBgImg">
-        </div>
-        <div class="hero-content">
-            <p class="hero-eyebrow" id="heroEyebrow">Since 1988</p>
-            <h1 class="hero-title" id="heroTitle">The Pioneer<br>of Healing.</h1>
-        </div>
-    </section>
+    <div class="hero-container" id="heroContainer">
+        <section class="hero" id="hero">
+            <div class="hero-bg">
+                <canvas id="heroCanvas"></canvas>
+            </div>
+            <div class="hero-content">
+                <p class="hero-eyebrow" id="heroEyebrow">Since 1988</p>
+                <h1 class="hero-title" id="heroTitle">The Pioneer<br>of Healing.</h1>
+            </div>
+        </section>
+    </div>
 
     <!-- ===== STATEMENT 1 ===== -->
     <section class="statement-panel" id="stmt1">
@@ -534,28 +544,57 @@
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
+        // ------- HERO CANVAS SETUP -------
+        const canvas = document.getElementById("heroCanvas");
+        const context = canvas.getContext("2d");
+        canvas.width = 1920;
+        canvas.height = 1080;
+
+        const frameCount = 96;
+        const currentFrame = index => `assets/hero-frames/frame_${(index + 1).toString().padStart(4, '0')}.webp`;
+        
+        const images = [];
+        const frames = { frame: 0 };
+        
+        for (let i = 0; i < frameCount; i++) {
+            const img = new Image();
+            img.src = currentFrame(i);
+            images.push(img);
+        }
+        
+        images[0].onload = render;
+        
+        function render() {
+            if (images[frames.frame]) {
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                context.drawImage(images[frames.frame], 0, 0, canvas.width, canvas.height);
+            }
+        }
+
+        // Hero Scroll Scrub Animation
+        gsap.to(frames, {
+            frame: frameCount - 1,
+            snap: "frame",
+            ease: "none",
+            scrollTrigger: {
+                trigger: "#heroContainer",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 0.5
+            },
+            onUpdate: render
+        });
+
         // ------- HERO ENTRANCE -------
         const heroTl = gsap.timeline({ delay: 0.3 });
         heroTl
-            .to('#heroBgImg', { scale: 1, duration: 2.0, ease: 'power3.out' })
+            .to('#heroCanvas', { scale: 1, duration: 2.0, ease: 'power3.out' })
             .to('#heroEyebrow', { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out' }, '-=1.5')
             .to('#heroTitle', { opacity: 1, y: 0, duration: 1.0, ease: 'power3.out' }, '-=0.7');
 
         // Set initial states
         gsap.set('#heroTitle, #heroEyebrow', { y: 40 });
-        gsap.set('#heroBgImg', { scale: 1.08 });
-
-        // Hero parallax
-        gsap.to('#heroBgImg', {
-            yPercent: 30,
-            ease: 'none',
-            scrollTrigger: {
-                trigger: '#hero',
-                start: 'top top',
-                end: 'bottom top',
-                scrub: true,
-            }
-        });
+        gsap.set('#heroCanvas', { scale: 1.08 });
 
         // ------- STATEMENT 1 -------
         gsap.to('#stmt1 .statement-text', {

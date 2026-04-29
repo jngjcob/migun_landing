@@ -83,7 +83,9 @@
         .hero-bg {
             position: relative;
             width: 100%;
-            height: calc(100vh - 120px);
+            aspect-ratio: 16 / 9;
+            height: auto;
+            max-height: calc(100vh - 140px); /* Prevents it from getting taller than the screen */
             margin: 0 auto;
             border-radius: 24px;
             overflow: hidden;
